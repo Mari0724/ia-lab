@@ -1,47 +1,53 @@
 ---
+title: Introducción
+sidebar_label: Introducción
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# IA Lab
 
-Let's discover **Docusaurus in less than 5 minutes**.
+IA Lab es un laboratorio de desarrollo enfocado en la construcción de soluciones basadas en arquitectura de microservicios utilizando tecnologías modernas como NestJS, Angular y TypeScript.
 
-## Getting Started
+## 🎯 Objetivo
 
-Get started by **creating a new site**.
+El objetivo principal de este proyecto es diseñar, desarrollar y documentar un sistema escalable que permita integrar múltiples servicios de manera modular, manteniendo una separación clara de responsabilidades.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+## 🧩 Enfoque del proyecto
 
-### What you'll need
+Este laboratorio no se limita únicamente a inteligencia artificial, sino que abarca:
 
-- [Node.js](https://nodejs.org/en/download/) version 20.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+- Arquitectura de software  
+- Backend con microservicios  
+- Integración entre servicios  
+- Buenas prácticas de desarrollo  
+- Documentación técnica estructurada  
 
-## Generate a new site
+## 🏗️ Arquitectura general
 
-Generate a new Docusaurus site using the **classic template**.
+El sistema está organizado bajo un enfoque de microservicios, donde cada componente cumple un rol específico:
 
-The classic template will automatically be added to your project after you run the command:
+- **Gateway**: Punto de entrada principal para las solicitudes  
+- **Servicios**: Encargados de la lógica de negocio (ej: accounting-service)  
+- **Frontend (Angular)**: Interfaz de usuario  
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+Cada servicio puede evolucionar de forma independiente, facilitando la escalabilidad del sistema.
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+## 🚀 Tecnologías utilizadas
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+- NestJS  
+- Angular  
+- TypeScript  
+- Arquitectura de microservicios  
 
-## Start your site
+## 📚 Documentación
 
-Run the development server:
+En esta documentación encontrarás:
 
-```bash
-cd my-website
-npm run start
-```
+- Descripción de la arquitectura  
+- Explicación de cada servicio  
+- Tutoriales de implementación  
+- Decisiones técnicas del proyecto  
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
+---
 
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+> Este proyecto forma parte de un proceso continuo de aprendizaje y construcción de soluciones reales.

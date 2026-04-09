@@ -1,70 +1,74 @@
 ---
-title: Evolución de arquitectura y refactorización en NestJS
-sidebar_position: 1
-id: arquitectura-refactorizacion
+title: Gateway
+sidebar_label: Gateway
+sidebar_position: 4
 ---
 
-# 🧠 Evolución de arquitectura y refactorización en NestJS
+# 🌐 Gateway
 
-## 📌 Idea principal
-
-En desarrollo profesional **no se construye una arquitectura compleja desde el inicio**.
-Se empieza simple y se evoluciona conforme el sistema crece.
-
----
-
-# 🚀 ¿Qué es la refactorización?
-
-## Definición
-
-La **refactorización** es el proceso de **mejorar la estructura del código sin cambiar su comportamiento**.
+El **Gateway** es el punto de entrada principal del sistema IA Lab.  
+Se encarga de recibir todas las solicitudes del cliente y redirigirlas hacia los microservicios correspondientes.
 
 ---
 
-## Ejemplo simple
+## 📌 Descripción
 
-Antes:
+El gateway actúa como intermediario entre el frontend y los servicios del backend.
 
-```ts
-app.service.ts
-```
+Sus principales funciones son:
 
-Después:
+- Centralizar el acceso al sistema  
+- Redirigir solicitudes a los servicios adecuados  
+- Servir como punto de control para futuras funcionalidades  
+
+Actualmente se encuentra en una fase inicial de desarrollo.
+
+---
+
+## ⚙️ Estado actual
+
+En esta etapa, el gateway cuenta con:
+
+- Estructura base generada con NestJS  
+- Controlador principal (`app.controller.ts`)  
+- Servicio principal (`app.service.ts`)  
+- Módulo raíz (`app.module.ts`)  
+
+👉 Aún no se ha implementado la comunicación con otros servicios.
+
+---
+
+## 🧩 Responsabilidades
+
+El gateway está diseñado para:
+
+- Recibir solicitudes del cliente (frontend)  
+- Determinar a qué servicio deben dirigirse  
+- Actuar como capa de abstracción entre cliente y servicios  
+- Facilitar la integración de nuevos microservicios  
+
+---
+
+## 🔄 Flujo de funcionamiento
+
+El flujo general del sistema es:
 
 ```text
-accounting/
- ├── accounting.service.ts
- ├── accounting.controller.ts
-```
+Cliente → Frontend → Gateway → Servicio → Respuesta
+````
 
-👉 La funcionalidad es la misma, pero la estructura es mejor.
+El gateway se encarga de:
 
----
-
-# ⚠️ Error común
-
-Muchos desarrolladores intentan desde el inicio:
-
-```text
-auth/
-users/
-accounting/
-ai/
-pdf/
-```
-
-## Problemas:
-
-* carpetas vacías
-* complejidad innecesaria
-* difícil mantenimiento
-* confusión
+1. Recibir la petición
+2. Procesarla (validaciones futuras)
+3. Redirigirla al servicio correspondiente
+4. Retornar la respuesta al cliente
 
 ---
 
-# ✅ Estrategia correcta
+## 🏗️ Estructura del proyecto
 
-## 🔹 Etapa 1 — Simplicidad
+Actualmente, el gateway mantiene una estructura simple:
 
 ```text
 src/
@@ -73,144 +77,63 @@ src/
  ├── app.module.ts
 ```
 
-✔ fácil de entender
-✔ rápido de desarrollar
-✔ enfocado en lógica
+Esta estructura permitirá una refactorización progresiva a medida que aumente la complejidad.
 
 ---
 
-## 🔹 Etapa 2 — Crecimiento
+## 🔄 Evolución esperada
 
-Cuando el proyecto empieza a tener más responsabilidades:
+A medida que el sistema crezca, el gateway evolucionará hacia una estructura más robusta:
 
 ```text
 src/
- ├── accounting/
- │    ├── accounting.controller.ts
- │    ├── accounting.service.ts
- │    ├── accounting.module.ts
+ ├── routes/
+ ├── middleware/
+ ├── interceptors/
+ ├── guards/
 ```
 
-✔ separación por dominio
-✔ mejor organización
+Y podrá incluir funcionalidades como:
+
+* Autenticación y autorización
+* Validación de datos
+* Logging de solicitudes
+* Manejo centralizado de errores
 
 ---
 
-## 🔹 Etapa 3 — Escalabilidad
+## 🔗 Relación con otros componentes
 
-Cuando el sistema crece aún más:
+El gateway se comunica con:
 
-```text
-src/
- ├── accounting/
- ├── ai/
- ├── pdf/
- ├── reporting/
-```
-
-✔ arquitectura modular
-✔ fácil mantenimiento
-✔ escalable
-
----
-
-# 🧠 ¿Cuándo refactorizar?
-
-Refactoriza cuando ocurra alguno de estos casos:
-
----
-
-## 1. Demasiada lógica en un archivo
-
-```text
-app.service.ts → 300+ líneas ❌
-```
-
----
-
-## 2. Múltiples responsabilidades
+* **Frontend** → recibe solicitudes
+* **Microservicios** → envía solicitudes y recibe respuestas
 
 Ejemplo:
 
-* cálculos contables
-* procesamiento de PDF
-* lógica de IA
+* Gateway → accounting-service
 
 ---
 
-## 3. Dificultad para mantener o entender el código
+## 🚧 Próximos pasos
+
+* Implementar rutas reales hacia microservicios
+* Configurar comunicación entre servicios
+* Añadir validaciones básicas
+* Preparar estructura para autenticación
 
 ---
 
-# 🔥 Regla de oro
+## 🎯 Objetivo a largo plazo
 
-> **No diseñes para el futuro, diseña para el presente… pero permite crecer.**
+Convertir el gateway en un componente central capaz de:
 
----
-
-# 🧩 Aplicado a un sistema contable con IA
-
-## Etapa inicial
-
-```text
-accounting-service
- ├── app.service.ts
-```
-
-✔ cálculos básicos
+* Gestionar múltiples servicios
+* Controlar el acceso al sistema
+* Escalar junto con la arquitectura
 
 ---
 
-## Etapa intermedia
-
-```text
-accounting/
- ├── accounting.service.ts
-```
-
-✔ lógica contable más compleja
-
----
-
-## Etapa avanzada
-
-```text
-src/
- ├── accounting/
- ├── ai/
- ├── pdf/
-```
-
-✔ integración con IA
-✔ procesamiento de documentos
-✔ generación automática de reportes
-
----
-
-# ⚖️ Ventajas de este enfoque
-
-* menor complejidad inicial
-* aprendizaje progresivo
-* mejor control del sistema
-* arquitectura limpia
-
----
-
-# 🎯 Conclusión
-
-* Empieza simple
-* Construye funcionalidad
-* Refactoriza cuando el sistema lo requiera
-* Escala con intención, no por anticipación
-
----
-
-# 🚀 Siguiente paso
-
-Una vez tengas la base funcional:
-
-* conectar microservicios
-* agregar procesamiento de datos
-* integrar IA progresivamente
+> El gateway es una pieza clave en la arquitectura del sistema y evolucionará progresivamente conforme crezca el proyecto.
 
 ---
