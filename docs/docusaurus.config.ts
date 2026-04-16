@@ -1,5 +1,5 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
@@ -54,10 +54,14 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          to: '/docs/projects/overview',
+          label: 'Proyectos',
           position: 'left',
-          label: 'Documentación',
+        },
+        {
+          to: '/docs/tutorials/accounting-service',
+          label: 'Tutoriales',
+          position: 'left',
         },
         {
           href: 'https://github.com/Mari0724/ia-lab',

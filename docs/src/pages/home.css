@@ -1,0 +1,245 @@
+/* =========================
+   🌌 BASE
+========================= */
+
+body {
+  background: #F8EDFB;
+}
+
+
+/* =========================
+   ✨ SPARKLES
+========================= */
+
+.sparkles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(#fff 1px, transparent 1px),
+    radial-gradient(#AD74C3 1px, transparent 1px);
+  background-size: 40px 40px, 80px 80px;
+  animation: sparkleMove 25s linear infinite;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+@keyframes sparkleMove {
+  from { transform: translateY(0); }
+  to { transform: translateY(-200px); }
+}
+
+
+/* =========================
+   🚀 HERO
+========================= */
+
+.hero {
+  position: relative;
+  padding: 5rem 3rem;
+  overflow: hidden;
+  background: linear-gradient(135deg, #F8EDFB, #EADFF0);
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+/* TEXTO */
+
+.hero-text {
+  padding-right: 2rem;
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  color: #522566;
+  margin-bottom: 1rem;
+}
+
+.hero-text p {
+  color: #7A3A8E;
+  margin-bottom: 2rem;
+}
+
+/* IMAGEN */
+
+.hero-image {
+  position: relative;
+  height: 100%;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* DEGRADADO */
+
+.hero-image::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 120px;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    #EADFF0,
+    rgba(234,223,240,0.6),
+    transparent
+  );
+  z-index: 2;
+}
+
+
+/* =========================
+   ⚡ EFECTO DATOS
+========================= */
+
+.data-lines {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.data-lines::before {
+  content: "";
+  position: absolute;
+  left: 65%;
+  top: 10%;
+  width: 2px;
+  height: 200px;
+  background: linear-gradient(to bottom, transparent, #AD74C3, transparent);
+  animation: flow 2s linear infinite;
+}
+
+@keyframes flow {
+  0% { transform: translateY(-40px); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(80px); opacity: 0; }
+}
+
+
+/* =========================
+   🎯 BOTONES
+========================= */
+
+.btn, .card-btn {
+  background: #7A3A8E;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn:hover, .card-btn:hover {
+  background: #522566;
+}
+
+
+/* =========================
+   🧱 CARDS (BIEN HECHAS)
+========================= */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 👈 2 columnas */
+  gap: 2rem;
+  padding: 3rem;
+}
+
+/* CARD */
+
+.card {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* texto | imagen */
+  border-radius: 16px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* TEXTO */
+
+.card-content {
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-content h3 {
+  color: #522566;
+  margin-bottom: 0.5rem;
+}
+
+.card-content p {
+  color: #7A3A8E;
+  margin-bottom: 1rem;
+}
+
+/* IMAGEN */
+
+.card-image {
+  position: relative;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* DEGRADADO */
+
+.card-image::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 80px;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    white,
+    rgba(255,255,255,0.6),
+    transparent
+  );
+  z-index: 2;
+}
+
+
+/* =========================
+   📱 RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+  .hero-content {
+    grid-template-columns: 1fr;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-image::before,
+  .card-image::before {
+    display: none;
+  }
+}
